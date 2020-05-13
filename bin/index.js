@@ -1,35 +1,40 @@
 #!/usr/bin/env node
 const fs = require('fs');
 const path = require('path');
+const args = require('./args');
+const constructCode = require('./code-constructor');
 
-const args = process.argv.slice(2);
+const absPath = path.join(process.cwd(), args._[0]);
+const parsedPath = path.parse(absPath);
+let filePath = absPath;
 
-let componentName;
+fs.mkdirSync(parsedPath.dir, { recursive: true });
 
-if (args[0]) {
-  componentName = args[0];
-} else {
-  componentName = 'NewComponent';
+if (args.folder) {
+  fs.mkdirSync(absPath);
+  filePath = path.join(absPath, parsedPath.name);
 }
 
-const fileName = componentName + '.js';
+if (args.css || args.scss) {
+  let ext = '.css';
+  if (args.scss) ext = '.scss';
+  try {
+    fs.appendFileSync(filePath + ext, '');
+  } catch (err) {
+    console.log(err);
+    process.exit();
+  }
+}
 
-const componentPath = path.join(__dirname, '..', '/', fileName);
-
-if (fs.existsSync(componentPath)) {
-  console.log('Component' + fileName + 'already exists');
+if (fs.existsSync(filePath + '.js')) {
+  console.log(`Component ${parsedPath.name} already exists`);
   process.exit();
 }
 
-const componentCode =
-  "import React, { useEffect, useState} from 'react';\n\nconst " +
-  componentName +
-  ' = props => {\n  return (\n      <div></div>\n       )\n };\n\nexport default ' +
-  componentName +
-  ';';
+const code = constructCode(args);
 
 try {
-  fs.appendFileSync(fileName, componentCode);
+  fs.appendFileSync(filePath + '.js', code);
 } catch (err) {
   console.log(err);
 }

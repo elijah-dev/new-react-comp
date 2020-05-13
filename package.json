@@ -1,7 +1,7 @@
 {
   "name": "new-react-comp",
-  "version": "0.0.1",
-  "description": "simple react component generation",
+  "version": "0.0.2",
+  "description": "Simple react component generation",
   "main": "bin/index.js",
   "bin": {
     "new-react-comp": "./bin/index.js"
@@ -10,6 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "elijah-k",
-  "license": "ISC",
-  "dependencies": {}
+  "license": "MIT",
+  "dependencies": {
+    "yargs": "^15.3.1"
+  }
 }
