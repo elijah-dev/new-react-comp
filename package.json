@@ -1,6 +1,6 @@
 {
   "name": "new-react-comp",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Simple react component generation",
   "main": "bin/index.js",
   "bin": {
