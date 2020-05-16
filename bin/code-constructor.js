@@ -4,9 +4,9 @@ const constructImportStr = (optOne, optTwo, strOne, strTwo) => {
   if (!optOne && !optTwo) return '';
   let importStr = '{ ';
   if (optOne && optTwo) return importStr + `${strOne}, ${strTwo}} `;
-  if (optOne) importStr + strOne;
-  if (optTwo) importStr + strTwo;
-  importStr + '} ';
+  if (optOne) importStr = importStr + strOne;
+  if (optTwo) importStr = importStr + strTwo;
+  importStr = importStr + '} ';
   return importStr;
 };
 
