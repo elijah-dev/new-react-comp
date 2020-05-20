@@ -10,7 +10,7 @@ const constructImportStr = (optOne, optTwo, strOne, strTwo) => {
   return importStr;
 };
 
-const constructCode = (opts) => {
+const constructCode = opts => {
   const name = path.basename(opts._[0]);
   const effect = 'useEffect';
   const state = 'useState';
@@ -49,8 +49,7 @@ const constructCode = (opts) => {
   if (opts.dispatch) dispatchLine = '  const dispatch = useDispatch();\n\n';
 
   let stateLine = '';
-  if (opts.dispatch)
-    stateLine = `  const [state, setState] = useState('');\n\n`;
+  if (opts.state) stateLine = `  const [state, setState] = useState('');\n\n`;
 
   let selectorLine = '';
   if (opts.selector)
