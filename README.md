@@ -2,6 +2,8 @@
 
 Simple tool for faster react component generation. Only works with functional components and hooks (there is an option for react-redux hooks).
 
+Made as a learning exercise.
+
 Simple example:
 
 ```bash
